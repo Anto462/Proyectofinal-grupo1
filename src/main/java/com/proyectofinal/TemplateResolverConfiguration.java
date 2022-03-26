@@ -38,7 +38,7 @@ public SpringResourceTemplateResolver resolver_1(){
 public SpringResourceTemplateResolver resolver_2(){
     SpringResourceTemplateResolver plantilla = new SpringResourceTemplateResolver();
     
-    plantilla.setPrefix("templates/other/");
+    plantilla.setPrefix("static/other/");
     plantilla.setSuffix(".html");
     plantilla.setTemplateMode(TemplateMode.HTML);
     plantilla.setCharacterEncoding("UTF-8");
