@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>COLECIONISMO</title>
+        <meta charset="UTF-8">
+        <meta name ="description" content="Colecionismopage">
+        <meta name ="keywords" content="gaming,nintendo,sony,microsoft,html5,css3">
+        <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+       <header th:replace="layout/plantilla :: header" ></header>
+       <div class="texto">
+        <h1 class="login">Login</h1>  
+        <br>
+        <hr>
+        <br>
+        <h2 class="title"> Colecionismo </h2>
+        <div th:if="${colecionismos != null and !colecionismos.empty}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Unidades</th>
+                    <th>Marca</th>
+                    <th>Certificado</th>  
+                    <th>Descripcion</th>
+                    <th>Tipo de garantia</th>
+                    <th>Genero</th>
+                    <th>Modificar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="colecionismo : ${colecionismos}">
+                    <td th:text="${colecionismo.nombre}"></td>
+                    <td th:text="${#numbers.formatDecimal(colecionismo.precio,3,2)}" style="text-align: right"></td>
+                    <td th:text="${colecionismo.unidades}"></td>
+                    <td th:text="${colecionismo.marca}"></td>
+                    <td th:text="${colecionismo.certificado}"></td>
+                    <td th:text="${colecionismo.descripcion}"></td>
+                    <td th:text="${colecionismo.producto.tipogarantia}"></td>
+                    <td th:text="${colecionismo.videojuego.genero}"></td>
+                    <td><a th:href="@{/colecionismo/modificar/}+ ${colecionismo.idColecionismo}">Modificar</a></td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    
+       </div>
+       <br>
+       <br>
+       <footer th:replace="layout/plantilla :: footer" ></footer>
+    </body>
+</html>
