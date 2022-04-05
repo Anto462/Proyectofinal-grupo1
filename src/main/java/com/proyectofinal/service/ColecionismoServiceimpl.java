@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ColecionismoServiceimpl {
+public class ColecionismoServiceimpl implements ColecionismoService{
     @Autowired
     private ColecionismoDao colecionismoDao;
     

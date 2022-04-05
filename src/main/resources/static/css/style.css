@@ -104,3 +104,22 @@ font-style: italic;
     font-size: 18px;
     
 }
+
+.logout{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 30px 525px;
+    line-height: 25px;
+    background-color: goldenrod;
+    padding: 8px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: whitesmoke;
+    position: fixed;
+    
+    left: 1250px;
+}
+.logout:hover {
+    background-color: gold;
+    transition: 1s;
+}

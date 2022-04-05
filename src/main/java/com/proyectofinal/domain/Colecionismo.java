@@ -33,8 +33,7 @@ public class Colecionismo implements Serializable{
     public Colecionismo() {
     }
 
-    public Colecionismo(Long idColecionismo, String nombre, double precio, int unidades, String marca, boolean certificado, String descripcion, Producto producto, Videojuego videojuego) {
-        this.idColecionismo = idColecionismo;
+    public Colecionismo(String nombre, double precio, int unidades, String marca, boolean certificado, String descripcion, Producto producto, Videojuego videojuego) {
         this.nombre = nombre;
         this.precio = precio;
         this.unidades = unidades;
