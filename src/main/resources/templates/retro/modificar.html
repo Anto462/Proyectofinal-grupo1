@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>EDIT RETRO</title>
+        <meta charset="UTF-8">
+        <meta name ="description" content="Perifericopage">
+        <meta name ="keywords" content="gaming,nintendo,sony,microsoft,html5,css3">
+        <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header" ></header>
+        <div class="texto">
+            <br/>
+            <br/>
+        <form th:action="@{/retro/guardar}" method="post" th:object="${retro}">
+            <br/>
+            <br/>
+            <h2 class="title">Retro</h2>
+            <br/>
+            <br/>
+            <input type="hidden" name="idRetro" th:field="*{idRetro}" />
+            
+            <label for="nombre">Nombre: </label>
+            <input type="text" name="nombre" th:field="*{nombre}" />
+            <br/>
+             
+            <label for="precio">Precio: </label>
+            <input type="number" name="precio" th:field="*{precio}" />
+            <br/>
+            
+            <label for="anodesalida">Año de salida: </label>
+            <input type="text" name="anodesalida" th:field="*{anodesalida}" />
+            <br/>
+            
+            <label for="estado">Estado: </label>
+            <input type="text" name="estado" th:field="*{estado}" />
+            <br/>
+            
+            <label for="descripcion">Descripcion: </label>
+            <input type="text" name="descripcion" th:field="*{descripcion}" />
+            <br/>
+            
+            
+            <input type="submit" name="guardar" />
+            
+        </form>
+        </div>
+        <footer th:replace="layout/plantilla :: footer" ></footer>
+    </body>
+</html>

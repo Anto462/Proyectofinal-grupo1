@@ -46,5 +46,44 @@ public SpringResourceTemplateResolver resolver_2(){
     plantilla.setCheckExistence(true);
     return plantilla;
 }
+
+@Bean
+public SpringResourceTemplateResolver resolver_3(){
+    SpringResourceTemplateResolver plantilla = new SpringResourceTemplateResolver();
+    
+    plantilla.setPrefix("templates/colecionismo/");
+    plantilla.setSuffix(".html");
+    plantilla.setTemplateMode(TemplateMode.HTML);
+    plantilla.setCharacterEncoding("UTF-8");
+    plantilla.setOrder(3);
+    plantilla.setCheckExistence(true);
+    return plantilla;
+}
+@Bean
+public SpringResourceTemplateResolver resolver_4(){
+    SpringResourceTemplateResolver plantilla = new SpringResourceTemplateResolver();
+    
+    plantilla.setPrefix("templates/infantil/");
+    plantilla.setSuffix(".html");
+    plantilla.setTemplateMode(TemplateMode.HTML);
+    plantilla.setCharacterEncoding("UTF-8");
+    plantilla.setOrder(4);
+    plantilla.setCheckExistence(true);
+    return plantilla;
+}
+@Bean
+public SpringResourceTemplateResolver resolver_5(){
+    SpringResourceTemplateResolver plantilla = new SpringResourceTemplateResolver();
+    
+    plantilla.setPrefix("templates/periferico/");
+    plantilla.setSuffix(".html");
+    plantilla.setTemplateMode(TemplateMode.HTML);
+    plantilla.setCharacterEncoding("UTF-8");
+    plantilla.setOrder(5);
+    plantilla.setCheckExistence(true);
+    return plantilla;
+}
+
+
     
 }

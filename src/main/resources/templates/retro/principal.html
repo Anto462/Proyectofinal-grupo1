@@ -29,6 +29,7 @@
                                                         <th>Descripcion</th>
                                                         <th>Tipo de garantia</th>
                                                         <th>Genero</th>
+                                                        <th>Eliminar</th>
                                                         <th>Modificar</th>
                                                     </tr>
                                                 </thead>
@@ -41,6 +42,7 @@
                                                         <td th:text="${retro.descripcion}"></td>
                                                         <td th:text="${retro.producto.tipogarantia}"></td>
                                                         <td th:text="${retro.videojuego.genero}"></td>
+                                                        <td><a th:href="@{/retro/eliminar/}+ ${retro.idRetro}">Eliminar</a></td>
                                                         <td><a th:href="@{/retro/modificar/}+ ${retro.idRetro}">Modificar</a></td>
                                                     </tr>
                                                 </tbody>
