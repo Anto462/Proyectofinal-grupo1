@@ -8,35 +8,36 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
+   @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.inMemoryAuthentication()
-                .withUser("Alejandro")
-                .password("{noop}Pass")
-                .roles("ADMINISTRADOR", "GESTION", "USUARIO")
+                .withUser("alejandro")
+                    .password("{noop}123")
+                    .roles("ADMIN","VENDEDOR","USER")
                 .and()
-                .withUser("Ana")
-                .password("{noop}Pass")
-                .roles("GESTION", "USUARIO")
+                .withUser("esteban")
+                    .password("{noop}123")
+                    .roles("VENDEDOR","USER")
                 .and()
-                .withUser("Pepe")
-                .password("{noop}Pass")
-                .roles("USUARIO");
+                .withUser("pepe")
+                    .password("{noop}123")
+                    .roles("USER");
     }
-   /*     @Override
+    
+     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-                .antMatchers("/colecionismo/principal", "/indantil/principal","/periferico/principal","/retro/principal","/other/mapa")
-                    .hasAnyRole("ADMINISTRADOR", "GESTION", "USUARIO")
+                .antMatchers("/colecionismo/principal", "/infantil/principal","/periferico/principal","/retro/principal","/other/mapa")
+                    .hasRole("ADMIN")
+                .antMatchers("/colecionismo/principal", "/infantil/principal","/periferico/principal","/retro/principal","/other/mapa")
+                    .hasAnyRole("ADMIN","VENDEDOR")
                 .antMatchers("/")
-                    .hasAnyRole("ADMINISTRADOR", "GESTION", "USUARIO")
+                    .hasAnyRole("USER","VENDEDOR","ADMIN")
                 .and()
                     .formLogin()
                     .loginPage("/login")
                 .and()
                     .exceptionHandling().accessDeniedPage("/errores/403");
-    }  */
-    
+    } 
 }
