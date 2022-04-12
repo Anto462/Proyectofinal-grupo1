@@ -10,12 +10,13 @@
 }
 body{
     background-color: dimgray;
-    
+    font-family: 'Roboto', sans-serif;
 }
 .logo{
     font-size: 30px;
     font-weight: bold;
     line-height: 40px;
+    
 }
 
 .title{
@@ -29,9 +30,9 @@ body{
 
 .header {
     background-color: darkgoldenrod;
-    height: 80px;
+    height: 55px;
     position: fixed;
-    top: 40px;
+    top: 5px;
     left: 0;
     width: 100%;
 }
@@ -61,20 +62,20 @@ body{
 }
 
 .nav-menu-link {
-    padding: 8px 12px;
+    padding: 8px 5px;
     border-radius: 6px;
 }
 
 .nav-menu-link:hover {
-    background-color: gold;
+    background-color: goldenrod;
     transition: 1s;
-    font-size: 20px;
+    font-size: 18px;
     
 }
 .login {
     font-size: 18px;
     font-weight: bold;
-    margin: 30px 430px;
+    margin: 45px 430px;
     line-height: 25px;
     background-color: goldenrod;
     padding: 8px 18px;
@@ -108,7 +109,7 @@ font-style: italic;
 .logout{
     font-size: 18px;
     font-weight: bold;
-    margin: 30px 525px;
+    margin: 45px 525px;
     line-height: 25px;
     background-color: goldenrod;
     padding: 8px 18px;

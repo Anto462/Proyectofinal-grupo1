@@ -1,27 +1,73 @@
 <!DOCTYPE html>
-<html xmls:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:fragment="head">
         <title>GOLDENGAIMING</title>
         <meta charset="UTF-8"/>
         <link href="../../static/css/style.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
     </head>
+    
     <body>
-        <header th:fragment="header"class="header">  
-            <nav class="nav">
-            <a th:href="@{/}" class="logo nav-link">GOLDEN-GAMING</a>
-            <ul class="nav-menu">
-                <li class="nav-menu-item"><a th:href="@{/retro/principal}" class="nav-menu-link nav-link">RETRO</a> </li>
-                <li class="nav-menu-item"><a th:href="@{/colecionismo/principal}" class="nav-menu-link nav-link">COLECIONISMO</a> </li>
-                <li class="nav-menu-item"><a th:href="@{/infantil/principal}" class="nav-menu-link nav-link">INFANTIL</a> </li>
-                <li class="nav-menu-item"><a th:href="@{/periferico/principal}" class="nav-menu-link nav-link">PERIFERICOS</a> </li>
-                <li class="nav-menu-item"><a th:href="@{/other/mapa}" class="nav-menu-link nav-link">CONTACTANOS</a> </li>
-            </ul>
-            </nav> 
+   <header th:fragment="header" class="header">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+                <div class="container">
+                    <a th:href="@{/}" class="navbar-brand logo"><img src="https://freepngimg.com/thumb/gold/76094-united-gold-dollar-sign-states-sign,money,golden,financial-coin.png" width="40" height="40" class="d-inline-block align-top" alt=""/>  GOLDEN-GAMING</a>
+                    
+                    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav ms-auto" sec:authorize="hasRole('ROLE_USER')">
+                            <li class="nav-item px-2">
+                                <a th:href="@{/retro/principal}" class="nav-menu-link nav-link">RETRO</a>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a th:href="@{/colecionismo/principal}" class="nav-menu-link nav-link">COLECIONISMO</a>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a th:href="@{/infantil/principal}" class="nav-menu-link nav-link">INFANTIL</a>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a th:href="@{/periferico/principal}" class="nav-menu-link nav-link">PERIFERICOS</a>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a th:href="@{/other/mapa}" class="nav-menu-link nav-link">CONTACTANOS</a>
+                            </li>
+                        </ul>
+                        <ul sec:authorize="isAuthenticated()" class="navbar-nav ml-auto">
+                            <li class="nav-item mr-3">
+                                <a href="#" class="nav-link">
+                                   <i class="fa-solid fa-user-check login"></i>
+                                    <span>Usuario:</span>
+                                    <span sec:authentication="name">Usuario</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <form method="POST" th:action="@{/logout}">
+                                    <a href="#" onclick="this.parentNode.submit();" class="nav-link">
+                                        <i class="fa-solid fa-user-large-slash logout"></i>
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>                    
+                </div>|
+            </nav>
         </header>
         
         <footer th:fragment="footer">
             
-            <p class="pie">&COPY; Pagina generada para el proyecto final del grupo 1 2022.</p>
+            <p class="pie"> | &COPY; Pagina generada para el proyecto final del grupo 1 2022. |</p>
             
         </footer>
     </body>
