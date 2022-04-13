@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+<head th:replace="layout/plantilla :: head">
+        <title>Retro</title>
+    </head>
+    <body>
+        <header th:fragment="header" class="header">
+           <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">   
+                        <button 
+                            type="button" 
+                            class="btn btn-dark btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarRetro">
+                            <i class="fas fa-plus"></i> [[#{accion.agregar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+           <section th:fragment="listadoRetros" id="retros">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card text-white bg-dark mb-3 border-warning mb-3">
+                            <div class="card-header">
+                                <h4>[[#{retro.titulo}]]</h4>
+                            </div>
+                            <div th:if="${retros != null and !retros.empty}">
+                                <table class="table table-warning">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th></th>
+                                            <th th:text="#{retro.nombre}">nombre</th>
+                                            <th th:text="#{retro.precio}">precio</th>
+                                            <th th:text="#{retro.anodesalida}">Año de salida</th>
+                                            <th th:text="#{retro.estado}">Estado</th>
+                                            <th th:text="#{retro.descripcion}">Descripcion</th>
+                                            <th th:text="#{retro.tipogarantia}">Tipo de garantia</th>
+                                            <th th:text="#{retro.genero}">Genero</th>
+                                            <th th:text="#{accion.eliminar}">Eliminar</th>
+                                            <th th:text="#{accion.actualizar}">Modificar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="retro, contador : ${retros}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td th:text="${retro.nombre}"></td>
+                                            <td th:text="${#numbers.formatDecimal(retro.precio,3,2)}" style="text-align: right"></td>
+                                            <td th:text="${retro.anodesalida}"></td>
+                                            <td th:text="${retro.estado}"></td>
+                                            <td th:text="${retro.descripcion}"></td>
+                                            <td th:text="${retro.producto.tipogarantia}"></td>
+                                            <td th:text="${retro.videojuego.genero}"></td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/retro/eliminar/}+${retro.idRetro}"
+                                                   class="btn btn-dark">
+                                                    <i class="fa-solid fa-trash"></i></i> [[#{accion.eliminar}]]
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/retro/modificar/}+${retro.idRetro}"
+                                                   class="btn btn-dark">
+                                                    <i class="fa-solid fa-pencil"></i></i> [[#{accion.actualizar}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${retros == null or retros.empty}">
+                                <span th:text="#{retro.no_mostrar}">Lista vacía</span>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-md-3">
+                        <div class="card text-center bg-success text-white mb-3">
+                            <div class="card-body">
+                                <h3 th:text="#{retro.titulo}">Retros</h3>
+                                <h4 class="display-6">
+                                   <i class="fa-solid fa-gamepad"></i>[[${totalRetros}]]
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        <section th:fragment="agregarRetro">
+            <div id="agregarRetro" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Retro</h5>
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/retro/guardar}" th:object="${retro}"
+                              method="POST" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="nombre" th:text="#{retro.nombre}" style="color: black">Nombre: </label>
+                                    <input type="text" class="form-control" name="nombre" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio" th:text="#{retro.precio}" style="color: black">Precio: </label>
+                                    <input type="number" class="form-control" name="precio" required="true" step="any">
+                                </div>
+                                <div class="form-group">
+                                   <label for="anodesalida" th:text="#{retro.anodesalida}" style="color: black">Año de salida: </label>
+                                    <input type="text" class="form-control" name="anodesalida" required="true">
+                                </div>
+                                <div class="form-group">
+                                   <label for="estado" th:text="#{retro.estado}" style="color: black">Estado: </label>
+                                    <input type="text" class="form-control" name="estado" required="true">
+                                </div>
+                                <div class="form-group">
+                                   <label for="descripcion" th:text="#{retro.descripcion}" style="color: black">Descripcion: </label>
+                                    <input type="text" class="form-control" name="descripcion" required="true">
+                                </div>    
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-dark" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </section>
+        <section th:fragment="botonesEditar">
+            <div id="actions" class="py-4 mb-4 bg-light">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a th:href="@{/retro/listado}" class="btn btn-ligth btn-block">
+                                <i class="fa-solid fa-door-open"></i>[[#{accion.regresar}]]
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-success btn-block">
+                                <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                            </button>
+                        </div>
+                        <div class="col-md-3">
+                            <a th:href="@{/retro/eliminar/}+${retro.idRetro}"
+                               class="btn btn-danger btn-block">
+                                <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+            <!-- SIN FINALIZAR, CONTINUARE EL JUEVES/MIERCOLES -->
+         <section th:fragment="editarRetro">            
+            <form method="POST"
+                  th:action="@{/retro/guardar}"
+                  th:object="${retro}"
+                  class="was-validated">
+                <input type="hidden" name="idRetro" th:field="*{idRetro}"/>
+                <section th:replace="retro/fragmentosRetro :: botonesEditar"/> 
+                <div id="details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>[[#{accion.actualizar}]]</h4>
+                                    </div>
+                                    <div class="card-body">
+                                    <div class="form-group">
+                                    <label for="descripcion" th:text="#{retro.descripcion}">Descripcion: </label>
+                                    <input type="text" name="descripcion" th:field="*{descripcion}" />
+                                     </div>
+                                     <div class="form-group">
+                                    <label for="precio" th:text="#{retro.precio}">Precio: </label>
+                                    <input type="number" name="precio" th:field="*{precio}" />
+                                     </div>
+                                     <div class="form-group">
+                                    <label for="existencias" th:text="#{retro.existencias}">Existencias: </label>
+                                    <input type="number" name="existencias" th:field="*{existencias}" />
+                                     </div>
+                                    <div class="form-group">
+                                     <label for="activo" th:text="#{retro.activo}">Activo: </label>
+                                    <input type="checkbox" name="activo" th:field="*{activo}" />
+                                    </div>                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section> 
+                
+    </body>
+</html>

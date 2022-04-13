@@ -19,6 +19,7 @@ public class RetroController {
     @GetMapping("/retro/principal")
     public String inicio(Model model){       
         var retros = retroService.getRetros();
+        model.addAttribute("totalRetros",retros.size());
         model.addAttribute("retros",retros);
         return "/retro/principal";
     }
