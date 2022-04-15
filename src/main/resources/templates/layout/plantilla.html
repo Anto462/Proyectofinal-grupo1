@@ -66,8 +66,16 @@
         </header>
         
         <footer th:fragment="footer">
-            
-            <p class="pie"> | &COPY; Pagina generada para el proyecto final del grupo 1 2022. |</p>
+            <div class="container">
+                <div class="col">
+                    <p class="lead text-center">
+                        | &COPY; Pagina generada para el proyecto final del grupo 1 2022. |
+                        <a th:href="@{/(lang=es)}">ES</a> | 
+                        <a th:href="@{/(lang=en)}">EN</a> |
+                    </p>
+                </div>
+            </div>
+           
             
         </footer>
     </body>

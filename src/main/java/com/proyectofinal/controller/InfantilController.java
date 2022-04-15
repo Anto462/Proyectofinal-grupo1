@@ -30,7 +30,7 @@ public class InfantilController {
      @PostMapping("/infantil/guardar")
     public String guardarInfantil(Infantil infantil){
         infantilService.save(infantil);
-        return "redirect:/infantil/listado";
+        return "redirect:/infantil/principal";
     }
     
      @GetMapping("/infantil/modificar/{idInfantil}")
@@ -43,6 +43,6 @@ public class InfantilController {
      @GetMapping("/infantil/eliminar/{idInfantil}")
     public String eliminarInfantil(Infantil infantil){
         infantilService.delete(infantil);
-        return "redirect:/infantil/listado";
+        return "redirect:/infantil/principal";
     }
 }

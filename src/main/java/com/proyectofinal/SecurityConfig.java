@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/colecionismo/principal", "/infantil/principal","/periferico/principal","/retro/principal","/other/mapa")
                     .hasRole("ADMIN")
                 .antMatchers("/colecionismo/principal", "/infantil/principal","/periferico/principal","/retro/principal","/other/mapa")
-                    .hasAnyRole("ADMIN","VENDEDOR")
+                    .hasAnyRole("ADMIN","VENDEDOR","USER")
                 .antMatchers("/")
                     .hasAnyRole("USER","VENDEDOR","ADMIN")
                 .and()

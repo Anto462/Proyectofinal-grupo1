@@ -31,7 +31,7 @@ public class RetroController {
      @PostMapping("/retro/guardar")
     public String guardarRetro(Retro retro){
         retroService.save(retro);
-        return "redirect:/retro/listado";
+        return "redirect:/retro/principal";
     }
     
      @GetMapping("/retro/modificar/{idRetro}")
@@ -44,6 +44,6 @@ public class RetroController {
      @GetMapping("/retro/eliminar/{idRetro}")
     public String eliminarRetro(Retro retro){
         retroService.delete(retro);
-        return "redirect:/retro/listado";
+        return "redirect:/retro/principal";
     }
 }

@@ -2,19 +2,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://wwww.thymeleaf.org" 
       xmlns:sec="http://thymeleaft.org/extras/spring-security">
-<head th:replace="layout/plantilla :: head">
+    <head th:replace="layout/plantilla :: head">
         <title>Retro</title>
     </head>
-                    <body>
-                        <header th:replace="layout/plantilla :: header" ></header>
-                        <div class="texto">                  
-                          <br>
-                          <hr>
-                          <br>
+    <body>
+        <header th:replace="layout/plantilla :: header" ></header>
+        <div class="texto">                  
+            <br>
+                <hr>
+                    <br>
+                        
+                        <h2 th:text="#{retro.titulo}" class="title">Articulos retro</h2>            
+                        <div class="row row-cols-3" th:if="${retros != null and !retros.empty}">
+                            <div class="card text-white bg-dark mb-3 border-warning mb-3" th:each="retro : ${retros}" style="width: 25rem;">
+                                <img src="https://c4.wallpaperflare.com/wallpaper/711/664/37/retro-style-retro-games-david-legnon-space-invaders-atari-hd-wallpaper-thumb.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title ">[[${retro.nombre}]]</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted text-end" th:text="#{retro.precio}">Precio: </h6>
+                                        <h6 class="card-subtitle mb-2 text-muted text-end">[[${new java.text.DecimalFormat('¢#,##0.00').format(retro.precio)}]]</h6>
+                                        <p class="card-text">[[${retro.descripcion}]]</p>
+                                        <p class="card-text" th:text="#{retro.anodesalida}">Año de salida:</p>  
+                                        <p class="card-text" >[[${retro.anodesalida}]]</p>                       
+                                    </div>
+                            </div>                
+                        </div>
+                        <div th:if="${retros == null or retros.empty}"  th:text="#{retro.no_mostrar}">
+                            No contamos con articulos disponibles
+                        </div>
+
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
                         <section th:replace="retro/fragmentosRetro :: botonesAgregar"/>
                         <section th:replace="retro/fragmentosRetro :: agregarRetro"/>
                         <section th:replace="retro/fragmentosRetro :: listadoRetros"/>
                         </div>
-                                                <footer th:replace="layout/plantilla :: footer" ></footer>
-                                                </body>
-                                                </html>
+                        
+                        </div>        
+                        <footer th:replace="layout/plantilla :: footer" ></footer>
+                        </body>
+                        </html>

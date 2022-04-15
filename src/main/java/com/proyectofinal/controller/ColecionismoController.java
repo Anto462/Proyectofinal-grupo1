@@ -29,7 +29,7 @@ public class ColecionismoController {
      @PostMapping("/colecionismo/guardar")
     public String guardarColecionismo(Colecionismo colecionismo){
         colecionismoService.save(colecionismo);
-        return "redirect:/colecionismo/listado";
+        return "redirect:/colecionismo/principal";
     }
     
      @GetMapping("/colecionismo/modificar/{idColecionismo}")
@@ -42,7 +42,7 @@ public class ColecionismoController {
      @GetMapping("/colecionismo/eliminar/{idColecionismo}")
     public String eliminarColecionismo(Colecionismo colecionismo){
         colecionismoService.delete(colecionismo);
-        return "redirect:/colecionismo/listado";
+        return "redirect:/colecionismo/principal";
     }
     
 }

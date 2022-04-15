@@ -30,7 +30,7 @@ public class PerifericoController {
      @PostMapping("/periferico/guardar")
     public String guardarPeriferico(Periferico periferico){
         perifericoService.save(periferico);
-        return "redirect:/periferico/listado";
+        return "redirect:/periferico/principal";
     }
     
      @GetMapping("/periferico/modificar/{idPeriferico}")
@@ -43,6 +43,6 @@ public class PerifericoController {
      @GetMapping("/periferico/eliminar/{idPeriferico}")
     public String eliminarPeriferico(Periferico periferico){
         perifericoService.delete(periferico);
-        return "redirect:/periferico/listado";
+        return "redirect:/periferico/principal";
     }
 }
