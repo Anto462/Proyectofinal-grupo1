@@ -29,27 +29,27 @@
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav ms-auto" sec:authorize="hasRole('ROLE_USER')">
                             <li class="nav-item px-2">
-                                <a th:href="@{/retro/principal}" class="nav-menu-link nav-link">RETRO</a>
+                                <a th:href="@{/retro/principal}" class="nav-menu-link nav-link" th:text="#{plantilla.retro}">RETRO</a>
                             </li>
                             <li class="nav-item px-2">
-                                <a th:href="@{/colecionismo/principal}" class="nav-menu-link nav-link">COLECIONISMO</a>
+                                <a th:href="@{/colecionismo/principal}" class="nav-menu-link nav-link" th:text="#{plantilla.colcecionismo}">COLECIONISMO</a>
                             </li>
                             <li class="nav-item px-2">
-                                <a th:href="@{/infantil/principal}" class="nav-menu-link nav-link">INFANTIL</a>
+                                <a th:href="@{/infantil/principal}" class="nav-menu-link nav-link" th:text="#{plantilla.infantil}">INFANTIL</a>
                             </li>
                             <li class="nav-item px-2">
-                                <a th:href="@{/periferico/principal}" class="nav-menu-link nav-link">PERIFERICOS</a>
+                                <a th:href="@{/periferico/principal}" class="nav-menu-link nav-link" th:text="#{plantilla.periferico}">PERIFERICOS</a>
                             </li>
                             <li class="nav-item px-2">
-                                <a th:href="@{/other/mapa}" class="nav-menu-link nav-link">CONTACTANOS</a>
+                                <a th:href="@{/other/mapa}" class="nav-menu-link nav-link" th:text="#{plantilla.other}">CONTACTANOS</a>
                             </li>
                         </ul>
                         <ul sec:authorize="isAuthenticated()" class="navbar-nav ml-auto">
                             <li class="nav-item mr-3">
                                 <a href="#" class="nav-link">
                                    <i class="fa-solid fa-user-check login"></i>
-                                    <span>Usuario:</span>
-                                    <span sec:authentication="name">Usuario</span>
+                                    <span th:text="#{plantilla.user}">Usuario:</span>
+                                    <span sec:authentication="name" >Usuario</span>
                                 </a>
                             </li>
                             <li class="nav-item">
