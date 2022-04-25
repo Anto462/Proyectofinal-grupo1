@@ -3,7 +3,7 @@
       xmlns:th="http://wwww.thymeleaf.org" 
       xmlns:sec="http://thymeleaft.org/extras/spring-security">
     <head th:replace="layout/plantilla :: head">
-        <title>Infantil</title>
+        <title>Periferico</title>
     </head>
     <body>
         <header th:fragment="header" class="header">
@@ -15,7 +15,7 @@
                                 type="button" 
                                 class="btn btn-dark btn-block" 
                                 data-bs-toggle="modal" 
-                                data-bs-target="#agregarInfantil">
+                                data-bs-target="#agregarPeriferico">
                                 <i class="fas fa-plus"></i> [[#{accion.agregar}]]
                             </button>
                         </div>
@@ -23,36 +23,36 @@
                 </div>
             </section>
 
-            <section th:fragment="agregarInfantil">
-                <div id="agregarInfantil" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <section th:fragment="agregarPeriferico">
+                <div id="agregarPeriferico" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header bg-info text-white">
-                                <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Infantil</h5>
+                                <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Periferico</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div> 
-                            <form th:action="@{/infantil/guardar}" th:object="${infantil}"
+                            <form th:action="@{/periferico/guardar}" th:object="${periferico}"
                                   method="POST" class="was-validated">
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="nombre" th:text="#{infantil.nombre}" style="color: black">Nombre</label>
+                                        <label for="nombre" th:text="#{periferico.nombre}" style="color: black">Nombre</label>
                                         <input type="text" class="form-control" name="nombre" required="true">
                                     </div>
                                     <div class="form-group">
-                                        <label for="precio" th:text="#{infantil.precio}" style="color: black">Precio</label>
+                                        <label for="precio" th:text="#{periferico.precio}" style="color: black">Precio</label>
                                         <input type="number" class="form-control" name="precio" required="true"  step="any">
                                     </div>
                                     <div class="form-group">
-                                        <label for="edadrecomendada" th:text="#{infantil.edadrecomendada}" style="color: black">Edad Recomendada</label>
-                                        <input type="text" class="form-control" name="edadrecomendada" required="true">
+                                        <label for="marca" th:text="#{periferico.caracteristicas}" style="color: black">Caracteristicas</label>
+                                        <input type="text" class="form-control" name="caracteristicas" required="true">
                                     </div>
                                     <div class="form-group">
-                                        <label for="descripcion" th:text="#{infantil.descripcion}" style="color: black">Descripción</label>
+                                        <label for="marca" th:text="#{periferico.marca}" style="color: black">Marca</label>
+                                        <input type="text" class="form-control" name="marca" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="descripcion" th:text="#{periferico.descripcion}" style="color: black">Descripción</label>
                                         <input type="text" class="form-control" name="descripcion">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="videojuego" style="color: black">Videojuego</label>
-                                        <input type="number" class="form-control" name="videojuego" required="true">
                                     </div>
                                     <div class="form-group">
                                         <label for="producto" style="color: black">Producto</label>
@@ -68,25 +68,25 @@
                 </div>
             </section>
 
-            <section th:fragment="listadoInfantils" id="infantils">
+            <section th:fragment="listadoPerifericos" id="perifericos">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-9">
                             <div class="card text-white bg-dark mb-3 border-warning mb-3">
                                 <div class="card-header">
-                                    <h4>[[#{infantil.titulo}]]</h4>
+                                    <h4>[[#{periferico.titulo}]]</h4>
                                 </div>
-                                <div th:if="${infantils != null and !infantils.empty}">
+                                <div th:if="${perifericos != null and !perifericos.empty}">
                                     <table class="table table-warning">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>#</th>
-                                                <th th:text="#{infantil.nombre}">Nombre</th>
-                                                <th th:text="#{infantil.precio}">Precio</th>
-                                                <th th:text="#{infantil.edadrecomendada}">Edad Recomendada</th>
-                                                <th th:text="#{infantil.descripcion}">Descripcion</th>
-                                                <th th:text="#{infantil.tipogarantia}">Tipo de garantía</th>
-                                                <th th:text="#{infantil.genero}">Género</th>
+                                                <th th:text="#{periferico.nombre}">Nombre</th>
+                                                <th th:text="#{periferico.precio}">Precio</th>
+                                                <th th:text="#{periferico.caracteristicas}">Caracteristicas</th>
+                                                <th th:text="#{periferico.marca}">Marca</th>
+                                                <th th:text="#{periferico.descripcion}">Descripcion</th>
+                                                <th th:text="#{periferico.tipogarantia}">Tipo de garantía</th>
                                                 <th th:text="#{accion.eliminar}">Eliminar</th>
                                                 <th th:text="#{accion.actualizar}">Modificar</th>
                                                 <th></th>
@@ -94,23 +94,23 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="infantil, contador : ${infantils}">
+                                            <tr th:each="periferico, contador : ${perifericos}">
                                                 <td>[[${contador.count}]]</td>
-                                                <td th:text="${infantil.nombre}"></td>
-                                                <td th:text="${#numbers.formatDecimal(infantil.precio,3,2)}" style="text-align: right"></td>
-                                                <td th:text="${infantil.edadrecomendada}"></td>
-                                                <td th:text="${infantil.descripcion}"></td>
-                                                <td th:text="${infantil.producto.tipogarantia}"></td>
-                                                <td th:text="${infantil.videojuego.genero}"></td>
+                                                <td th:text="${periferico.nombre}"></td>
+                                                <td th:text="${#numbers.formatDecimal(periferico.precio,3,2)}" style="text-align: right"></td>
+                                                <td th:text="${periferico.caracteristicas}"></td>
+                                                <td th:text="${periferico.marca}"></td>
+                                                <td th:text="${periferico.descripcion}"></td>
+                                                <td th:text="${periferico.producto.tipogarantia}"></td>
 
                                                 <td>
-                                                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/infantil/eliminar/}+${infantil.idInfantil}"
+                                                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/periferico/eliminar/}+${periferico.idPeriferico}"
                                                        class="btn btn-dark">
                                                         <i class="fa-solid fa-trash"></i> [[#{accion.eliminar}]]
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/infantil/modificar/}+${infantil.idInfantil}"
+                                                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/periferico/modificar/}+${periferico.idPeriferico}"
                                                        class="btn btn-dark">
                                                         <i class="fa-solid fa-pencil"></i> [[#{accion.actualizar}]]
                                                     </a>
@@ -119,17 +119,17 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="text-center p-2" th:if="${infantils == null or infantils.empty}">
-                                    <span th:text="#{infantil.no_mostrar}">Lista vacía</span>
+                                <div class="text-center p-2" th:if="${perifericos == null or perifericos.empty}">
+                                    <span th:text="#{periferico.no_mostrar}">Lista vacía</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card text-center text-dark bg-warning mb-3">
                                 <div class="card-body">
-                                    <h3 th:text="#{infantil.titulo}">Infantil</h3>
+                                    <h3 th:text="#{periferico.titulo}">Periferico</h3>
                                     <h4 class="display-6">
-                                        <i class="fa-solid fa-gamepad"></i>[[${totalInfantils}]]
+                                        <i class="fa-solid fa-gamepad"></i>[[${totalPerifericos}]]
                                     </h4>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-3">
-                                <a th:href="@{/infantil/principal}" class="btn btn-dark btn-block">
+                                <a th:href="@{/periferico/principal}" class="btn btn-dark btn-block">
                                     <i class="fa-solid fa-backward"></i> [[#{accion.regresar}]]
                                 </a>
                             </div>
@@ -153,7 +153,7 @@
                                 </button>
                             </div>
                             <div class="col-md-3">
-                                <a th:href="@{/infantil/eliminar/}+${infantil.idInfantil}"
+                                <a th:href="@{/periferico/eliminar/}+${periferico.idPeriferico}"
                                    class="btn btn-dark btn-block">
                                     <i class="fa-solid fa-trash-can-xmark"></i> [[#{accion.eliminar}]]
                                 </a>
@@ -163,12 +163,12 @@
                 </div>
             </section>
 
-            <section th:fragment="editarInfantil">            
+            <section th:fragment="editarPeriferico">            
                 <form method="POST"
-                      th:action="@{/infantil/guardar}"
-                      th:object="${infantil}"
+                      th:action="@{/periferico/guardar}"
+                      th:object="${periferico}"
                       class="was-validated">
-                    <input type="hidden" name="idInfantil" th:field="*{idInfantil}"/>
+                    <input type="hidden" name="idPeriferico" th:field="*{idPeriferico}"/>
                     <div id="details">
                         <div class="container">
                             <div class="row">
@@ -179,25 +179,25 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="form-group">
-                                                <label for="nombre" th:text="#{infantil.nombre}">Nombre</label>
+                                                <label for="nombre" th:text="#{periferico.nombre}">Nombre</label>
                                                 <input type="text" name="nombre" th:field="*{nombre}">
                                             </div>
                                             <div class="form-group">
-                                                <label for="precio" th:text="#{infantil.precio}">Precio</label>
+                                                <label for="precio" th:text="#{periferico.precio}">Precio</label>
                                                 <input type="number" name="precio" th:field="*{precio}">
                                             </div>
                                             <div class="form-group">
-                                                <label for="edadrecomendada" th:text="#{infantil.edadrecomendada}">Edad Recomendada</label>
-                                                <input type="text" name="edadrecomendada" th:field="*{edadrecomendada}">
+                                                <label for="caracteristicas" th:text="#{periferico.caracteristicas}">Caracteristicas</label>
+                                                <input type="text" name="caracteristicas" th:field="*{caracteristicas}">
                                             </div>
                                             <div class="form-group">
-                                                <label for="descripcion" th:text="#{infantil.descripcion}">Descripción</label>
+                                                <label for="marca" th:text="#{periferico.marca}">Marca</label>
+                                                <input type="text" name="marca" th:field="*{marca}" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="descripcion" th:text="#{periferico.descripcion}">Descripción</label>
                                                 <input type="text" name="descripcion" th:field="*{descripcion}">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="videojuego" >Videojuego</label>
-                                                <input type="number" name="videojuego" th:field="*{videojuego}" />
-                                            </div> 
                                             <div class="form-group">
                                                 <label for="producto" >Producto</label>
                                                 <input type="number" name="producto" th:field="*{producto}" />
@@ -208,7 +208,7 @@
                             </div>
                         </div>
                     </div>
-                    <section th:replace="infantil/fragmentosInfantil :: botonesEditar"/>
+                    <section th:replace="periferico/fragmentosPeriferico :: botonesEditar"/>
                 </form>
             </section>
     </body>

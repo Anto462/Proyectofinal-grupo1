@@ -19,7 +19,8 @@ public class PerifericoController {
     @GetMapping("/periferico/principal")
     public String inicio(Model model){       
         var perifericos = perifericoService.getPerifericos();
-        model.addAttribute("perifericos",perifericos);
+        model.addAttribute("totalPerifericos", perifericos.size());
+        model.addAttribute("perifericos", perifericos);
         return "/periferico/principal";
     }
      @GetMapping("/periferico/nuevo")

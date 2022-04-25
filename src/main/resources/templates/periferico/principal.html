@@ -2,50 +2,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://wwww.thymeleaf.org" 
       xmlns:sec="http://thymeleaft.org/extras/spring-security">
-<head th:replace="layout/plantilla :: head">
+    <head th:replace="layout/plantilla :: head">
         <title>Periferico</title>
     </head>
     <body>
-       <header th:replace="layout/plantilla :: header" ></header>
-       <div class="texto">
-        <h1 class="login">Login</h1>
-        <form class="logout" method="POST" th:action="@{/logout}" style="display: inline">                    
-        <a href="#" onclick="this.parentNode.submit();">Logout</a>
-        </form>
-        <br>
-        <hr>
-        <br>
-        <h2 class="title"> Periferico </h2>
-        <div th:if="${perifericos != null and !perifericos.empty}">
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Características</th>
-                    <th>Marca</th>
-                    <th>Descripcion</th>
-                    <th>Tipo de garantia</th>
-                    <th>Modificar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="periferico : ${perifericos}">
-                    <td th:text="${periferico.nombre}"></td>
-                    <td th:text="${#numbers.formatDecimal(periferico.precio,3,2)}" style="text-align: right"></td>
-                    <td th:text="${periferico.caracteristicas}"></td>
-                    <td th:text="${periferico.marca}"></td>
-                    <td th:text="${periferico.descripcion}"></td>
-                    <td th:text="${periferico.producto.tipogarantia}"></td>
-                    <td><a th:href="@{/periferico/modificar/}+ ${periferico.idPeriferico}">Modificar</a></td>
-                </tr>
-            </tbody>
-        </table>
-      </div>
-    
-       </div>
-       <br>
-       <br>
-       <footer th:replace="layout/plantilla :: footer" ></footer>
-    </body>
-</html>
+        <header th:replace="layout/plantilla :: header" ></header>
+        <div class="texto">                  
+            <br>
+                <hr>
+                    <br>
+
+                        <h2 th:text="#{periferico.titulo}" class="title display-3 py-1 mb-5 fw-bold" style="background-color: goldenrod">Articulos Perifericos</h2>            
+                        <div class="row row-cols-3" th:if="${perifericos != null and !perifericos.empty}">
+                            <div class="card text-white bg-dark mb-3 border-warning mb-3" th:each="periferico : ${perifericos}" style="width: 25rem;">
+                                <img src="https://cdn.pixabay.com/photo/2013/07/13/11/47/computer-158675_1280.png" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title ">[[${periferico.nombre}]]</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted text-end" th:text="#{periferico.precio}">Precio: </h6>
+                                        <h6 class="card-subtitle mb-2 text-muted text-end">[[${new java.text.DecimalFormat('¢#,##0.00').format(periferico.precio)}]]</h6>
+                                        <p class="card-text">[[${periferico.descripcion}]]</p>                      
+                                    </div>
+                            </div>                
+                        </div>
+                        <div th:if="${perifericos == null or perifericos.empty}"  th:text="#{periferico.no_mostrar}">
+                            No contamos con articulos disponibles
+                        </div>
+
+                        <div>
+                            <section th:replace="periferico/fragmentosPeriferico :: botonesAgregar"/>
+                            <section th:replace="periferico/fragmentosPeriferico :: agregarPeriferico"/>
+                            <section th:replace="periferico/fragmentosPeriferico :: listadoPerifericos"/> 
+                        </div>
+
+                        <footer th:replace="layout/plantilla :: footer" ></footer>
+                        </body>
+                        </html>
