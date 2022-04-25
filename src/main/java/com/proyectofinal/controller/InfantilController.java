@@ -1,4 +1,3 @@
-
 package com.proyectofinal.controller;
 
 import com.proyectofinal.domain.Infantil;
@@ -13,35 +12,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @Slf4j
 public class InfantilController {
-        @Autowired
+
+    @Autowired
     private InfantilService infantilService;
-    
+
     @GetMapping("/infantil/principal")
-    public String inicio(Model model){       
+    public String inicio(Model model) {
         var infantils = infantilService.getInfantils();
-        model.addAttribute("infantils",infantils);
+        model.addAttribute("totalInfantils", infantils.size());
+        model.addAttribute("infantils", infantils);
         return "/infantil/principal";
     }
-     @GetMapping("/infantil/nuevo")
-    public String nuevoInfantil(Infantil infantil){       
+
+    @GetMapping("/infantil/nuevo")
+    public String nuevoInfantil(Infantil infantil) {
         return "/infantil/modificar";
     }
-    
-     @PostMapping("/infantil/guardar")
-    public String guardarInfantil(Infantil infantil){
+
+    @PostMapping("/infantil/guardar")
+    public String guardarInfantil(Infantil infantil) {
         infantilService.save(infantil);
         return "redirect:/infantil/principal";
     }
-    
-     @GetMapping("/infantil/modificar/{idInfantil}")
-    public String modificarInfantil(Infantil infantil, Model model){
+
+    @GetMapping("/infantil/modificar/{idInfantil}")
+    public String modificarInfantil(Infantil infantil, Model model) {
         infantil = infantilService.getInfantil(infantil);
-        model.addAttribute("infantil",infantil);
+        model.addAttribute("infantil", infantil);
         return "/infantil/modificar";
     }
-    
-     @GetMapping("/infantil/eliminar/{idInfantil}")
-    public String eliminarInfantil(Infantil infantil){
+
+    @GetMapping("/infantil/eliminar/{idInfantil}")
+    public String eliminarInfantil(Infantil infantil) {
         infantilService.delete(infantil);
         return "redirect:/infantil/principal";
     }

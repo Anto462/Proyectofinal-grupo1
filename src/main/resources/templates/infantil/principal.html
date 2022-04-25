@@ -2,50 +2,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://wwww.thymeleaf.org" 
       xmlns:sec="http://thymeleaft.org/extras/spring-security">
-<head th:replace="layout/plantilla :: head">
+    <head th:replace="layout/plantilla :: head">
         <title>Infantil</title>
     </head>
     <body>
-       <header th:replace="layout/plantilla :: header" ></header>
-       <div class="texto">
-        <h1 class="login">Login</h1>
-        <form class="logout" method="POST" th:action="@{/logout}" style="display: inline">                    
-        <a href="#" onclick="this.parentNode.submit();">Logout</a>
-        </form>
-        <br>
-        <hr>
-        <br>
-        <h2 class="title"> Infantil </h2>
-        <div th:if="${infantils != null and !infantils.empty}">
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Edad Recomendada</th>
-                    <th>Descripcion</th>
-                    <th>Tipo de garantia</th>
-                    <th>Genero</th>
-                    <th>Modificar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="infantil : ${infantils}">
-                    <td th:text="${infantil.nombre}"></td>
-                    <td th:text="${#numbers.formatDecimal(infantil.precio,3,2)}" style="text-align: right"></td>
-                    <td th:text="${infantil.edadrecomendada}"></td>
-                    <td th:text="${infantil.descripcion}"></td>
-                    <td th:text="${infantil.producto.tipogarantia}"></td>
-                    <td th:text="${infantil.videojuego.genero}"></td>
-                    <td><a th:href="@{/infantil/modificar/}+ ${infantil.idInfantil}">Modificar</a></td>
-                </tr>
-            </tbody>
-        </table>
-      </div>
-    
-       </div>
-       <br>
-       <br>
-       <footer th:replace="layout/plantilla :: footer" ></footer>
-    </body>
-</html>
+        <header th:replace="layout/plantilla :: header" ></header>
+        <div class="texto">                  
+            <br>
+                <hr>
+                    <br>
+
+                        <h2 th:text="#{infantil.titulo}" class="title display-3 py-1 mb-5 fw-bold" style="background-color: goldenrod">Articulos Infantiles</h2>            
+                        <div class="row row-cols-3" th:if="${infantils != null and !infantils.empty}">
+                            <div class="card text-white bg-dark mb-3 border-warning mb-3" th:each="infantil : ${infantils}" style="width: 25rem;">
+                                <img src="https://i0.wp.com/hipertextual.com/wp-content/uploads/2020/12/nintendo-playstation-xbox-scaled.jpg?fit=2560%2C1440&ssl=1" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title ">[[${infantil.nombre}]]</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted text-end" th:text="#{infantil.precio}">Precio: </h6>
+                                        <h6 class="card-subtitle mb-2 text-muted text-end">[[${new java.text.DecimalFormat('¢#,##0.00').format(infantil.precio)}]]</h6>
+                                        <p class="card-text">[[${infantil.descripcion}]]</p>                      
+                                    </div>
+                            </div>                
+                        </div>
+                        <div th:if="${infantils == null or infantils.empty}"  th:text="#{infantil.no_mostrar}">
+                            No contamos con articulos disponibles
+                        </div>
+
+                        <div>
+                            <section th:replace="infantil/fragmentosInfantil :: botonesAgregar"/>
+                            <section th:replace="infantil/fragmentosInfantil :: agregarInfantil"/>
+                            <section th:replace="infantil/fragmentosInfantil :: listadoInfantils"/> 
+                        </div>
+
+                        <footer th:replace="layout/plantilla :: footer" ></footer>
+                        </body>
+                        </html>
