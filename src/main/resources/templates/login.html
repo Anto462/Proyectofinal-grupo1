@@ -7,6 +7,7 @@
     </head>
     <body>
         <header th:replace="layout/plantilla :: header" ></header>
+        <br>
         <section id="actions" class="py-4 mb-4 bg-light">
             <div class="container">
                 <div class="row">                   
@@ -18,29 +19,30 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 mx-auto">
-                        <div class="card">
+                        <div class="card text-white bg-dark mb-3">
                             <div class="card-header">
                                 <h4>[[#{login.login}]]</h4>
                             </div>
                             <div class="card-body">
                                 <form method="POST" th:action="@{/login}">
-                                    <div class="row py-1 mb-2 bg-light">
+                                    <div class="row py-1 mb-2 bg-darkt">
                                         <div class="form-group">
                                             <label for="username">[[#{login.username}]]:</label>
                                             <input type="text" name="username" id="username"/>
                                         </div>
                                     </div>
-                                    <div class="row py-1 mb-2 bg-light">
+                                    <div class="row py-1 mb-2 bg-dark">
                                         <div class="form-group">
                                             <label for="password">[[#{login.password}]]:</label>
                                             <input type="password" name="password" id="password"/>
                                         </div>
                                     </div>
-                                    <div class="form-check">
+                                    <div class="form-check form-switch">
                                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                             <label class="form-check-label" for="exampleCheck1">Terminos y condiciones</label>
-                                            <div class="row  py-1 mb-2 bg-light">
-                                                <button type="submit" class=" btn btn-outline-dark btn-block">[[#{login.login}]]</button>                                        
+                                            </div>
+                                            <div class="row  py-1 mb-2 bg-dark">
+                                                <button type="submit" class=" btn btn-warning btn-outline-dark btn-block">[[#{login.login}]]</button>                                        
                                             </div>
                                             </form>
                                     </div>

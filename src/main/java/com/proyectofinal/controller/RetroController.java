@@ -30,7 +30,9 @@ public class RetroController {
     
      @PostMapping("/retro/guardar")
     public String guardarRetro(Retro retro){
+         System.out.println("El objeto tiene" + retro);
         retroService.save(retro);
+        
         return "redirect:/retro/principal";
     }
     

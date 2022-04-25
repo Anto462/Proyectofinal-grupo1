@@ -7,49 +7,33 @@
     </head>
     <body>
        <header th:replace="layout/plantilla :: header" ></header>
-       <div class="texto">
-        <h1 class="login">Login</h1>
-        <form class="logout" method="POST" th:action="@{/logout}" style="display: inline">                    
-        <a href="#" onclick="this.parentNode.submit();">Logout</a>
-        </form>
-        <br>
-        <hr>
-        <br>
-        <h2 class="title"> Colecionismo </h2>
-        <div th:if="${colecionismos != null and !colecionismos.empty}">
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Unidades</th>
-                    <th>Marca</th>
-                    <th>Certificado</th>  
-                    <th>Descripcion</th>
-                    <th>Tipo de garantia</th>
-                    <th>Genero</th>
-                    <th>Modificar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="colecionismo : ${colecionismos}">
-                    <td th:text="${colecionismo.nombre}"></td>
-                    <td th:text="${#numbers.formatDecimal(colecionismo.precio,3,2)}" style="text-align: right"></td>
-                    <td th:text="${colecionismo.unidades}"></td>
-                    <td th:text="${colecionismo.marca}"></td>
-                    <td th:text="${colecionismo.certificado}"></td>
-                    <td th:text="${colecionismo.descripcion}"></td>
-                    <td th:text="${colecionismo.producto.tipogarantia}"></td>
-                    <td th:text="${colecionismo.videojuego.genero}"></td>
-                    <td><a th:href="@{/colecionismo/modificar/}+ ${colecionismo.idColecionismo}">Modificar</a></td>
-                </tr>
-            </tbody>
-        </table>
-      </div>
-    
-       </div>
-       <br>
-       <br>
-       <footer th:replace="layout/plantilla :: footer" ></footer>
-    </body>
+        <div class="texto">                  
+            <br>
+                <hr>
+                    <br> 
+                        <h2 th:text="#{colecionismo.titulo}" class="title display-3 py-1 mb-5 fw-bold" style="background-color: goldenrod">Articulos colecionismo</h2>            
+                        <div class="row row-cols-3" th:if="${colecionismos != null and !colecionismos.empty}">
+                            <div class="card text-white bg-dark mb-3 border-warning mb-3" th:each="colecionismo : ${colecionismos}" style="width: 25rem;">
+                                <img src="https://3.bp.blogspot.com/-TLrDrv9A7Lw/UJoKFqAthWI/AAAAAAAAHYo/N-UQtH4GK2k/s1600/IMG_2079.JPG" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title ">[[${colecionismo.nombre}]]</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted text-end" th:text="#{colecionismo.precio}">Precio: </h6>
+                                        <h6 class="card-subtitle mb-2 text-muted text-end">[[${new java.text.DecimalFormat('¢#,##0.00').format(colecionismo.precio)}]]</h6>
+                                        <p class="card-text">[[${colecionismo.descripcion}]]</p>               
+                                    </div>
+                            </div>                
+                        </div>
+                        <div th:if="${colecionismos == null or colecionismos.empty}"  th:text="#{colecionismo.no_mostrar}">
+                            No contamos con articulos disponibles
+                        </div>
+
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <section th:replace="colecionismo/fragmentosColecionismo :: botonesAgregar"/>
+                        <section th:replace="colecionismo/fragmentosColecionismo :: agregarColecionismo"/>
+                        <section th:replace="colecionismo/fragmentosColecionismo :: listadoColecionismos"/>
+                        </div>
+                        
+                        </div>        
+                        <footer th:replace="layout/plantilla :: footer" ></footer>
+                        </body>
 </html>

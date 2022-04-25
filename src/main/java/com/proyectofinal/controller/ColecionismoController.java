@@ -18,6 +18,7 @@ public class ColecionismoController {
     @GetMapping("/colecionismo/principal")
     public String inicio(Model model){       
         var colecionismos = colecionismoService.getColecionismos();
+        model.addAttribute("totalColecionismos",colecionismos.size());
         model.addAttribute("colecionismos",colecionismos);
         return "/colecionismo/principal";
     }
