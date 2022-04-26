@@ -28,10 +28,11 @@
                             No contamos con articulos disponibles
                         </div>
 
-                        <div>
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
                             <section th:replace="infantil/fragmentosInfantil :: botonesAgregar"/>
                             <section th:replace="infantil/fragmentosInfantil :: agregarInfantil"/>
                             <section th:replace="infantil/fragmentosInfantil :: listadoInfantils"/> 
+                        </div>
                         </div>
 
                         <footer th:replace="layout/plantilla :: footer" ></footer>
