@@ -12,7 +12,7 @@
                 <hr>
                     <br>
                         
-                        <h2 th:text="#{retro.titulo}" class="title display-3 py-1 mb-5 fw-bold" style="background-color: goldenrod">Articulos retro</h2>            
+                        <h2 th:text="#{retro.titulo}" class="title display-3 py-1 mb-5 fw-bold shadow-sm rounded" style="background-color: goldenrod">Articulos retro</h2>            
                         <div class="row row-cols-3" th:if="${retros != null and !retros.empty}">
                             <div class="card text-white bg-dark mb-3 border-warning mb-3" th:each="retro : ${retros}" style="width: 25rem;">
                                 <img src="https://c4.wallpaperflare.com/wallpaper/711/664/37/retro-style-retro-games-david-legnon-space-invaders-atari-hd-wallpaper-thumb.jpg" class="card-img-top" alt="...">

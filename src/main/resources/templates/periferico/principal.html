@@ -12,7 +12,7 @@
                 <hr>
                     <br>
 
-                        <h2 th:text="#{periferico.titulo}" class="title display-3 py-1 mb-5 fw-bold" style="background-color: goldenrod">Articulos Perifericos</h2>            
+                        <h2 th:text="#{periferico.titulo}" class="title display-3 py-1 mb-5 fw-bold shadow-sm rounded" style="background-color: goldenrod">Articulos Perifericos</h2>            
                         <div class="row row-cols-3" th:if="${perifericos != null and !perifericos.empty}">
                             <div class="card text-white bg-dark mb-3 border-warning mb-3" th:each="periferico : ${perifericos}" style="width: 25rem;">
                                 <img src="https://cdn.pixabay.com/photo/2013/07/13/11/47/computer-158675_1280.png" class="card-img-top" alt="...">

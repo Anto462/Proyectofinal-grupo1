@@ -11,7 +11,7 @@
             <br>
                 <hr>
                     <br> 
-                        <h2 th:text="#{colecionismo.titulo}" class="title display-3 py-1 mb-5 fw-bold" style="background-color: goldenrod">Articulos colecionismo</h2>            
+                        <h2 th:text="#{colecionismo.titulo}" class="title display-3 py-1 mb-5 fw-bold shadow-sm rounded" style="background-color: goldenrod">Articulos colecionismo</h2>            
                         <div class="row row-cols-3" th:if="${colecionismos != null and !colecionismos.empty}">
                             <div class="card text-white bg-dark mb-3 border-warning mb-3" th:each="colecionismo : ${colecionismos}" style="width: 25rem;">
                                 <img src="https://3.bp.blogspot.com/-TLrDrv9A7Lw/UJoKFqAthWI/AAAAAAAAHYo/N-UQtH4GK2k/s1600/IMG_2079.JPG" class="card-img-top" alt="...">

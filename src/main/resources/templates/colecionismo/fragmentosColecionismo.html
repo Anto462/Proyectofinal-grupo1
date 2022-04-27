@@ -7,7 +7,7 @@
     </head>
     <body>
         <header th:fragment="header" class="header">
-            <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-warning shadow-sm rounded">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">   
@@ -100,7 +100,7 @@
                 <div id="agregarColecionismo" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header bg-info text-white">
+                            <div class="modal-header bg-warning text-dark">
                                 <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Colecionismo</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div> 
@@ -124,7 +124,7 @@
                                         <input type="text" class="form-control" name="marca" required="true">
                                     </div>
                                     <div class="form-group">
-                                    <label for="certificado" th:text="#{articulo.certificado}">certificado: </label>
+                                    <label for="certificado" th:text="#{colecionismo.certificado}" style="color: black">certificado: </label>
                                     <input type="checkbox" class="form-control" name="certificado"/>
                                     </div>
                                     <div class="form-group">

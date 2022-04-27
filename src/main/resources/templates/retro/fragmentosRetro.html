@@ -7,13 +7,13 @@
     </head>
     <body>
         <header th:fragment="header" class="header">
-            <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-warning shadow-sm rounded">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">   
                             <button 
                                 type="button" 
-                                class="btn btn-dark btn-block" 
+                                class="btn btn-dark btn-block " 
                                 data-bs-toggle="modal" 
                                 data-bs-target="#agregarRetro">
                                 <i class="fas fa-plus"></i> [[#{accion.agregar}]]
@@ -27,7 +27,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-9">
-                            <div class="card text-white bg-dark mb-3 border-warning mb-3">
+                            <div class="card text-white bg-dark mb-3 border-warning mb-3 ">
                                 <div class="card-header">
                                     <h4>[[#{retro.titulo}]]</h4>
                                 </div>
@@ -98,7 +98,7 @@
                 <div id="agregarRetro" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header bg-info text-white">
+                            <div class="modal-header bg-warning text-dark ">
                                 <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Retro</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div> 

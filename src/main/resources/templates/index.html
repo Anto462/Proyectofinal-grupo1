@@ -14,7 +14,7 @@
         
         <div class="texto">
         <hr>
-        <h2 class="title title display-3 py-1 mb-5 fw-bold" style="background-color: goldenrod" th:text="#{index.novedades}" > NOVEDADES!!! </h2>
+        <h2 class="title title display-3 py-1 mb-5 fw-bold shadow-sm rounded" style="background-color: goldenrod;" th:text="#{index.novedades}" > NOVEDADES!!! </h2>
         <small class="fw-bold"> Novedades en videoJuegos </small>
         </div>
         <div class="game">
@@ -93,9 +93,21 @@
             
         </div>    
         <div class="texto">    
-        <h2 class="title display-3 py-1 mb-5 fw-bold" style="background-color: goldenrod" th:text="#{index.ofertasdelocura}"> OFERTAS DE LOCURA!!! </h2>
+        <h2 class="title display-3 py-1 mb-5 fw-bold shadow-sm rounded" style="background-color: goldenrod" th:text="#{index.ofertasdelocura}"> OFERTAS DE LOCURA!!! </h2>
+        <p th:text="#{index.ofertas}" sec:authorize="hasRole('ROLE_ADMIN')">En esta seccion se mostraran ofertas en forman de imagen, la idea es que las mismas lleven a su respectiva categoria</p>
+        <div class="game">
+        <div class="image-container fa">
+            <img src="https://1.bp.blogspot.com/-Hj3AwWHanwE/WsqucYvs3cI/AAAAAAAADEU/qb2DF_TB570aCAImhlTtguse7BRpB7rmwCLcBGAs/s1600/god-of-war-key-art-01-ps4-us-01nov17.jpg" class="img-thumbnail"  alt="name">
+        </div>
+        <div class="image-container faa">
+            <img src="https://3.bp.blogspot.com/-jTNmndipcDg/WyG0_TXugHI/AAAAAAAAP28/AiYmq97lTQ8SAPxtelPEXP5GHwnHGPzxACLcBGAs/w1200-h630-p-k-no-nu/Super%2BMario%2BParty.jpg" class="img-thumbnail"  alt="name">
+        </div>
+        <div class="image-container fab">
+            <img src="https://1.bp.blogspot.com/-4szMq6IF1lQ/Xg96txgziSI/AAAAAAAABgw/oec2ViW9bksBopgqjd1AowLdOo9OX0v-wCLcBGAsYHQ/s1600/gta5-artwork-76-hd_56bc.1280.jpg" class="img-thumbnail"  alt="name">
+        </div> 
+        </div>
 
-        <p th:text="#{index.ofertas}">En esta seccion se mostraran ofertas en forman de imagen, la idea es que las mismas lleven a su respectiva categoria</p>
+        
         
         <hr>
         <br>
@@ -105,6 +117,9 @@
 
                 </div>
         </div>
+        <br><!-- <br> -->
+            <br> 
+                <br>
         
         <footer th:replace="layout/plantilla :: footer" ></footer>
     
