@@ -136,6 +136,14 @@ font-style: italic;
    display: flex;
 }
 
+.social{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
 .image-container{
     height: 400px;
         width: 700px;
